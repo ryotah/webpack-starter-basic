@@ -1,0 +1,10 @@
+h1 {
+  padding: 1rem;
+  font-size: 4rem;
+}
+
+/* This style isn't needed in this page.
+I added it to check Autoprefixer working */
+::placeholder {
+  color: gray;
+}

@@ -1,6 +1,7 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 const basePath = path.resolve(__dirname, 'src');
@@ -9,8 +10,17 @@ module.exports = {
   entry: {
     // Chunk shared
     shared: path.resolve(basePath, 'assets/scripts/index.js'),
-    // Chunks belonging to each page
+    // Chunk(s) belonging to each page
     doughnut: path.resolve(basePath, 'doughnut/index.js'),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+        exclude: /node_modules/,
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -25,6 +35,10 @@ module.exports = {
       chunks: ['shared', 'doughnut'],
       filename: 'doughnut/index.html',
       base: '/',
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css',
     }),
     new CopyPlugin({
       patterns: [
