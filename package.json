@@ -1,7 +1,7 @@
 {
   "name": "webpack-starter-basic",
   "version": "1.0.0",
-  "description": "A simple webpack starter kit. Babel, TypeScript, ESLint, PostCSS, etc.",
+  "description": "A simple webpack starter kit. Babel, TypeScript, ESLint, PostCSS, Environment variables, Git hooks, etc.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,15 +11,28 @@
     "url": "git+ssh://git@github.com/ryotah/webpack-starter-basic.git"
   },
   "keywords": [
-    "webpack",
-    "starter",
     "babel",
-    "typescript"
+    "environment",
+    "hooks",
+    "lint",
+    "starter",
+    "typescript",
+    "webpack"
   ],
   "author": "ryotah",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ryotah/webpack-starter-basic/issues"
   },
-  "homepage": "https://github.com/ryotah/webpack-starter-basic#readme"
+  "homepage": "https://github.com/ryotah/webpack-starter-basic#readme",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "husky": "^4.2.5"
+  }
 }
