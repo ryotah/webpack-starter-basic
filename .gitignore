@@ -1,3 +1,5 @@
+### Created by GitHub
+
 # Logs
 logs
 *.log
@@ -102,3 +104,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+### Fom here, add the settings you need
+
+.vscode/*
+!.vscode/settings.json.example
