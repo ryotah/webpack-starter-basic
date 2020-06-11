@@ -9,12 +9,23 @@ const basePath = path.resolve(__dirname, 'src');
 module.exports = {
   entry: {
     // Chunk shared
-    shared: path.resolve(basePath, 'assets/scripts/index.js'),
+    shared: path.resolve(basePath, 'assets/scripts/index.ts'),
     // Chunk(s) belonging to each page
-    doughnut: path.resolve(basePath, 'doughnut/index.js'),
+    doughnut: path.resolve(basePath, 'doughnut/index.ts'),
+  },
+  resolve: {
+    extensions: ['.js', '.ts'],
+    alias: {
+      '~': basePath,
+    },
   },
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        use: ['babel-loader', 'ts-loader'],
+        exclude: /node_modules/,
+      },
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
