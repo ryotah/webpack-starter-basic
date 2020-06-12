@@ -1,3 +1,5 @@
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
@@ -10,5 +12,13 @@ module.exports = merge(common, {
   output: {
     filename: '[name].[chunkhash].js',
     path: buildPath,
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        sourceMap: true,
+      }),
+      new OptimizeCssAssetsPlugin({}),
+    ],
   },
 });
