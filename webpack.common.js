@@ -3,8 +3,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
 const basePath = path.resolve(__dirname, 'src');
+
+// Load environment variables
+const result = require('dotenv').config({
+  path: `.env.${process.env.APP_ENV}`,
+});
+if (result.error) {
+  throw result.error;
+}
 
 module.exports = {
   entry: {
@@ -35,6 +44,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.GA_TRACKING_ID': JSON.stringify(process.env.GA_TRACKING_ID),
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(basePath, 'index.html'),
       chunks: ['shared'],

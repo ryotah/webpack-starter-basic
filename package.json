@@ -4,8 +4,11 @@
   "description": "A simple webpack starter kit. Babel, TypeScript, ESLint, PostCSS, Jest, Environment variables, Git hooks, etc.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.build.js",
-    "dev": "webpack-dev-server --config webpack.dev.js",
+    "build:dev": "APP_ENV=development webpack --config webpack.build.js",
+    "build:prod": "APP_ENV=production webpack --config webpack.build.js",
+    "build": "npm run build:dev",
+    "dev": "APP_ENV=local webpack-dev-server --config webpack.dev.js",
+    "lint": "eslint src && stylelint 'src/**/*.css'",
     "test": "jest"
   },
   "repository": {
@@ -61,6 +64,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.0.2",
     "css-loader": "^3.5.3",
+    "dotenv": "^8.2.0",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
