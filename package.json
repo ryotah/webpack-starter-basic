@@ -1,7 +1,7 @@
 {
   "name": "webpack-starter-basic",
   "version": "1.0.0",
-  "description": "A simple webpack starter kit. Babel, TypeScript, ESLint, PostCSS, Jest, Environment variables, Git hooks, etc.",
+  "description": ":doughnut: A simple webpack starter kit. Babel, TypeScript, ESLint, PostCSS, Jest, Environment variables, Git hooks, etc.",
   "main": "index.js",
   "scripts": {
     "build:dev": "APP_ENV=development webpack --config webpack.build.js",
